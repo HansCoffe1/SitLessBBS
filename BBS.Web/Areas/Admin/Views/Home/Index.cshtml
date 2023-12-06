@@ -20,7 +20,7 @@
     </div>
     <!-- /.card-body -->
 </div>
-<script src="/echarts/dist/echarts.min.js"></script>
+<script src="/echarts/dist/echarts.min.js"> </script>
 <script>
     function doChart(data) {
         // 基于准备好的dom，初始化echarts实例
@@ -72,7 +72,7 @@
             myChart.resize();
         }
     }
-    $(function () {
+    $(function () {//页面加载完成后执行
         $("#btn-search").on("click", function () {
             $.post("/admin/home/index", $("#form_0").serializeObject(), function (res) {
                 if (res.code === 1) {

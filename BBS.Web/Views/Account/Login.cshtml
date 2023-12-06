@@ -41,11 +41,13 @@
     function doSubmit() {
         var $Account1 = $("#@Html.IdFor(model=> model.Account1)"),
             $Password = $("#@Html.IdFor(model=> model.Password)");
+            //账号格式：4-30位 字母、数字、下划线，必须以字母或下划线开头
         if (!/^[a-z|A-z|_]\w{3,29}$/.test($Account1.val())) {
             layer.msg("账号格式不符合");
             $Account1.focus();
             return false;
         }
+        //密码格式：6-20位 字母、数字、下划线 
         if (!/^\w{6,20}$/.test($Password.val())) {
             layer.msg("密码格式不符合");
             $Password.focus();

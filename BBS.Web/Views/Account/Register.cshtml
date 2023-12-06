@@ -2,7 +2,6 @@
 @{
     ViewData["Title"] = "账号注册";
 }
-
 <div class="container">
     <div class="tt-tab-wrapper">
         <div class="tt-wrapper-inner">
@@ -46,13 +45,14 @@
     </div>
 </div>
 <script>
-    var loading = false;
+    var loading = false;// 防止重复提交
     function doCheckAccount(element) {
         if ($(element).val().isEmpty() || $(element).val().length < 4 || loading) {
-            $("#btn_submit").attr("disabled", "disabled");
+            $("#btn_submit").attr("disabled", "disabled");// 禁用提交按钮
             return;
         } 
         loading = true;
+        // 通过ajax请求检查账号是否已注册
         $.post("@Url.Action("CheckAccount", "Account")?account=" +$(element).val(), function (flag) {
             loading = false;
             if (flag) {

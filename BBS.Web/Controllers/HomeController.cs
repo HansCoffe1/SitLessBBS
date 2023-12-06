@@ -20,7 +20,12 @@ namespace BBS.Web.Controllers
         {
             _context = context;
         }
-
+        /// <summary>
+        /// 首页
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="page"></param>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Index(string s = "", int page = 1)
         {
@@ -51,12 +56,19 @@ namespace BBS.Web.Controllers
             ViewBag.S = s;
             return View(list);
         }
-
+        /// <summary>
+        /// 关于
+        /// </summary>
+        /// <returns></returns>
         public IActionResult About()
         {
             return View();
         }
-
+        /// <summary>
+        /// 反馈
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Feedback(FeedbackModel model)
         {
@@ -68,13 +80,19 @@ namespace BBS.Web.Controllers
 
             return RedirectToAction("Error", "Home");
         }
-
+        /// <summary>
+        /// 反馈成功
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Success()
         {
             return View();
         }
-
+        /// <summary>
+        /// 错误
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Error()
         {

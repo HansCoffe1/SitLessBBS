@@ -19,7 +19,11 @@ namespace BBS.Web.Controllers
         {
             _context = context;
         }
-
+        /// <summary>
+        /// 评论列表
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Publish(CommentModel model)
         {

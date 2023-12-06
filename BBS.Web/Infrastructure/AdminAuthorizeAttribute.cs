@@ -19,7 +19,10 @@ namespace BBS.Web.Infrastructure
         public AdminAuthorizeAttribute()
         {
         }
-
+        /// <summary>
+        /// 授权验证
+        /// </summary>
+        /// <param name="context"></param>
         public void OnAuthorization(AuthorizationFilterContext context)
         {
             var user = context.HttpContext.User;

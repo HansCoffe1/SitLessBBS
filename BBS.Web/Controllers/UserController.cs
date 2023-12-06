@@ -16,7 +16,12 @@ namespace BBS.Web.Controllers
         {
             _context = context;
         }
-
+        /// <summary>
+        /// 用户主页
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="page"></param>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Topic(int id, int page = 1)
         {
@@ -44,7 +49,12 @@ namespace BBS.Web.Controllers
             ViewBag.Id = id;
             return View(list);
         }
-
+        /// <summary>
+        /// 用户主页的关注用户
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="page"></param>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Follow(int id, int page = 1)
         {
@@ -58,7 +68,12 @@ namespace BBS.Web.Controllers
             ViewBag.Id = id;
             return View(list);
         }
-
+        /// <summary>
+        /// 用户主页的粉丝用户
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="page"></param>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Fans(int id, int page = 1)
         {

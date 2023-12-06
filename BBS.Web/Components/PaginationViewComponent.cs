@@ -12,6 +12,7 @@ namespace BBS.Web.Components
     /// </summary>
     public class PaginationViewComponent:ViewComponent
     {
+        
         public IViewComponentResult Invoke(PaginationModel pagination)
         {
             return View(pagination);

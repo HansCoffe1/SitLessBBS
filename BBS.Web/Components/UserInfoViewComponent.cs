@@ -17,6 +17,11 @@ namespace BBS.Web.Components
         {
             _context = context;
         }
+        /// <summary>
+        /// 用户信息
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         public IViewComponentResult Invoke(AccountModel model = null)
         {
             int id = Convert.ToInt32(Request.RouteValues["id"]);

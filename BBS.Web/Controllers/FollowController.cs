@@ -17,7 +17,11 @@ namespace BBS.Web.Controllers
         {
             _context = context;
         }
-
+        /// <summary>
+        /// 关注列表
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Add(int id)
         {
@@ -41,7 +45,11 @@ namespace BBS.Web.Controllers
                 return Json(false.ToResult("未知错误，请联系管理人员"));
             }
         }
-
+        /// <summary>
+        /// 取消关注
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Delete(int id)
         {

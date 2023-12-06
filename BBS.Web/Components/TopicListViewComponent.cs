@@ -10,9 +10,14 @@ namespace BBS.Web.Components
 {
     public class TopicListViewComponent : ViewComponent
     {
+        /// <summary>
+        /// 主题列表
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         public IViewComponentResult Invoke(PagedList<TopicModel> model)
         {
-            return View(model);
+            return View(model); 
         }
     }
 }

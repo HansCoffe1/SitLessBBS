@@ -9,7 +9,7 @@
       "Microsoft": "Warning",
       "Microsoft.Hosting.Lifetime": "Information"
     }
-  },
+  }, 
   "AllowedHosts": "*",
   "ConnectionStrings": {
     "MySQL": "server=localhost;user id=root;password=123456; database=bbsdb; charset=utf8"

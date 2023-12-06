@@ -16,6 +16,10 @@ namespace BBS.Web.Components
         {
             _context = context;
         }
+        /// <summary>
+        /// 最新注册用户
+        /// </summary>
+        /// <returns></returns>
         public IViewComponentResult Invoke()
         {
             var list = _context.Account.OrderByDescending(x => x.Id).Take(10).ToList().MapTo<List<Account>, List<AccountModel>>();

@@ -34,7 +34,10 @@ namespace BBS.Web.Areas.Admin.Controllers
             _context = context;
             _hostEnvironment = hostEnvironment;
         }
-
+        /// <summary>
+        /// 后台首页
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Index()
         {
@@ -47,7 +50,11 @@ namespace BBS.Web.Areas.Admin.Controllers
             };
             return View(model);
         }
-
+        /// <summary>
+        /// 后台首页
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Index(BeginEndRequest request)
         {

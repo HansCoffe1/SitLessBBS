@@ -36,12 +36,14 @@ namespace BBS.Web.Controllers
                 return View(model);
             }
 
-            var entity = new Account();
-            entity.Account1 = model.Account1.ToLower();
-            entity.NickName = model.NickName;
-            entity.Avatar = "/images/avatar_none.png";
-            entity.Password = Md5Helper.Encrypt(model.Password);
-            entity.CreateTime = DateTime.Now;
+            var entity = new Account
+            {
+                Account1 = model.Account1.ToLower(),
+                NickName = model.NickName,
+                Avatar = "/images/avatar_none.png",
+                Password = Md5Helper.Encrypt(model.Password),
+                CreateTime = DateTime.Now
+            };
             _context.Account.Add(entity);
 
             _context.SaveChanges();

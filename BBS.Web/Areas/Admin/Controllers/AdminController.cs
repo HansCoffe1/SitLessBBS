@@ -13,5 +13,6 @@ namespace BBS.Web.Areas.Admin.Controllers
     [Area("Admin")]
     public abstract class AdminController : Controller
     {
+
     }
 }

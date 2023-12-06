@@ -24,7 +24,12 @@ namespace BBS.Web.Controllers
             _context = context;
             _logger = logger;
         }
-
+        /// <summary>
+        /// 主题详情
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="page"></param>
+        /// <returns></returns>
         [HttpGet, AllowAnonymous]
         public IActionResult Detail(int id, int page = 1)
         {
@@ -86,7 +91,10 @@ namespace BBS.Web.Controllers
 
             return View(model);
         }
-
+        /// <summary>
+        /// 发表主题
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Publish()
         {

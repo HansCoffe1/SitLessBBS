@@ -17,6 +17,10 @@ namespace BBS.Web.Controllers
             _context = context;
         }
 
+        /// <summary>
+        /// 话题列表
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Index()
         {
@@ -36,6 +40,12 @@ namespace BBS.Web.Controllers
             return View(list);
         }
 
+        /// <summary>
+        /// 话题下主题列表
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="page"></param>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult List(int id, int page = 1)
         {

@@ -17,6 +17,11 @@ namespace BBS.Web.Components
         {
             _context = context;
         }
+        /// <summary>
+        /// 我的信息
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         public IViewComponentResult Invoke(AccountModel model = null)
         {
             model = model ?? _context.Account.Find(Convert.ToInt32(UserClaimsPrincipal.Claims.First(c => c.Type == ClaimTypes.Sid).Value)).MapTo<Account, AccountModel>();

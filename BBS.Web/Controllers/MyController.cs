@@ -21,14 +21,21 @@ namespace BBS.Web.Controllers
         {
             _context = context;
         }
-
+        /// <summary>
+        /// 个人中心
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Info()
         {
             var model = _context.Account.Find(UserModel.Id).MapTo<Account, AccountModel>();
             return View(model);
         }
-
+        /// <summary>
+        /// 修改昵称
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Update(AccountModel model)
         {
@@ -42,10 +49,15 @@ namespace BBS.Web.Controllers
 
             return RedirectToAction("Info", "My");
         }
-
+        /// <summary>
+        /// 我的主页标题
+        /// </summary>
+        /// <param name="page"></param>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Topic(int page = 1)
         {
+            //我的主题列表，默认取20条
             var list = _context.Topic.Where(x => x.AccountId == UserModel.Id).OrderByDescending(x => x.Id).ToPagedList<Topic, TopicModel>(page, 20);   // 主题列表，默认取20条
 
             // 话题
@@ -58,8 +70,9 @@ namespace BBS.Web.Controllers
 
             foreach (var item in list)
             {
+               
                 item.Catalog = catalogs.FirstOrDefault(x => x.Id == item.CatalogId).MapTo<Catalog, CatalogModel>(); // 话题
-
+                
                 var commentCount = commentCounts.FirstOrDefault(x => x.TopicId == item.Id);
                 if (commentCount != null)
                 {
@@ -69,7 +82,11 @@ namespace BBS.Web.Controllers
 
             return View(list);
         }
-
+        /// <summary>
+        /// 发表主题
+        /// </summary>
+        /// <param name="page"></param>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Favorite(int page = 1)
         {
@@ -115,7 +132,11 @@ namespace BBS.Web.Controllers
 
             return View(list);
         }
-
+        /// <summary>
+        /// 取消收藏
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult CancelFavorite(int id)
         {
@@ -127,7 +148,11 @@ namespace BBS.Web.Controllers
             }
             return Json(true.ToResult());
         }
-
+        /// <summary>
+        /// 我的评论
+        /// </summary>
+        /// <param name="page"></param>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Comment(int page = 1)
         {
@@ -173,7 +198,11 @@ namespace BBS.Web.Controllers
 
             return View(list);
         }
-
+        /// <summary>
+        /// 我的点赞
+        /// </summary>
+        /// <param name="page"></param>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult ThumbsUp(int page = 1)
         {
@@ -219,7 +248,11 @@ namespace BBS.Web.Controllers
 
             return View(list);
         }
-
+        /// <summary>
+        /// 我的点踩
+        /// </summary>
+        /// <param name="page"></param>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult ThumbsDown(int page = 1)
         {
@@ -265,7 +298,11 @@ namespace BBS.Web.Controllers
 
             return View(list);
         }
-
+        /// <summary>
+        /// 我的关注用户
+        /// </summary>
+        /// <param name="page"></param>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Follow(int page = 1)
         {
@@ -277,7 +314,11 @@ namespace BBS.Web.Controllers
             var list = queryable.ToPagedList<Account, AccountModel>(page, 30);
             return View(list);
         }
-
+        /// <summary>
+        /// 我的粉丝用户
+        /// </summary>
+        /// <param name="page"></param>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Fans(int page = 1)
         {
@@ -290,16 +331,26 @@ namespace BBS.Web.Controllers
             return View(list);
         }
     }
-
     public class TopicModelComparer : IEqualityComparer<TopicModel>
     {
+        /// <summary>
+        /// 比较两个对象是否相等，如果相等则返回true，否则返回false
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
         public bool Equals([AllowNull] TopicModel x, [AllowNull] TopicModel y)
         {
             return x.Id == y.Id;
         }
-
+        /// <summary>
+        /// 获取哈希值
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public int GetHashCode([DisallowNull] TopicModel obj)
         {
+
             return obj.Id.GetHashCode();
         }
     }

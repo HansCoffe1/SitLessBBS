@@ -9,6 +9,10 @@ namespace BBS.Web.Components
 {
     public class LoginViewComponent:ViewComponent
     {
+        /// <summary>
+        /// 登录组件
+        /// </summary>
+        /// <returns></returns>
         public IViewComponentResult Invoke()
         {
             ViewBag.ReturnUrl = Request.Path.Value;

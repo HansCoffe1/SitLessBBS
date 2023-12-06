@@ -30,7 +30,7 @@
         }
     </style>
     <script>
-        var loading = false;
+        var loading = false;//防止重复提交
         $(document).ajaxError(function (event, xhr, setting, des) {
             console.dir(arguments);
             if (xhr.status === 401) {

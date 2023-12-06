@@ -16,6 +16,7 @@ namespace BBS.Web.Areas.Admin.Infrastructure
             {
                 try
                 {
+                    // 从cookie中获取用户信息
                     int id = Convert.ToInt32(User.Claims.First(c => c.Type == ClaimTypes.Sid).Value);
                     string name = User.Claims.First(c => c.Type == ClaimTypes.Name).Value,
                         account = User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value;
