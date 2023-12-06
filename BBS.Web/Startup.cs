@@ -88,6 +88,7 @@ namespace BBS.Web
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            //app.UseFavicon();// 使用Favicon.ico
 
             app.UseRouting();
 

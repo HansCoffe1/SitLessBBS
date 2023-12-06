@@ -253,6 +253,10 @@ namespace BBS.Web.Areas.Admin.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+        /// <summary>
+        /// 这里注销好像有点问题！
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> LogOut()
         {
