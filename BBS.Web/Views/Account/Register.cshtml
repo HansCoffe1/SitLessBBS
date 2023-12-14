@@ -45,68 +45,69 @@
     </div>
 </div>
 <script>
-    var loading = false;// 防止重复提交
-    function doCheckAccount(element) {
-        if ($(element).val().isEmpty() || $(element).val().length < 4 || loading) {
-            $("#btn_submit").attr("disabled", "disabled");// 禁用提交按钮
-            return;
+    var loading = false;// 定义一个变量loading，用于表示是否正在发送ajax请求，初始值为false
+    function doCheckAccount(element) { // 定义一个函数doCheckAccount，用于检查账号是否已注册
+        if ($(element).val().isEmpty() || $(element).val().length < 4 || loading) { // 如果输入框的值为空或长度小于4或正在发送ajax请求
+            $("#btn_submit").attr("disabled", "disabled");
+            return; 
         } 
-        loading = true;
+        loading = true; 
         // 通过ajax请求检查账号是否已注册
-        $.post("@Url.Action("CheckAccount", "Account")?account=" +$(element).val(), function (flag) {
-            loading = false;
-            if (flag) {
-                layer.msg("此账号已注册，换一个吧");
-                $(element).focus();
-                $("#btn_submit").attr("disabled", "disabled")
-            } else {
-                $("#btn_submit").removeAttr("disabled");
+        $.post("@Url.Action("CheckAccount", "Account")?account=" +$(element).val(), function (flag) { 
+        // 通过jQuery的post方法发送一个post请求，请求的地址为控制器和动作的Url，请求的参数为账号的值，请求的回调函数为一个匿名函数
+            loading = false; // 将loading变量的值设为false，表示结束发送ajax请求
+            if (flag) { // 如果服务器返回的标志为真，表示账号已注册
+                layer.msg("此账号已注册，换一个吧"); 
+                $(element).focus(); 
+                $("#btn_submit").attr("disabled", "disabled") // 禁用提交按钮
+            } else { // 否则，表示账号未注册，就执行以下代码
+                $("#btn_submit").removeAttr("disabled"); // 通过id选择器找到提交按钮，移除其disabled属性，即启用提交按钮
             }
         })
     }
 
-    function doSubmit() {
-        var $Account1 = $("#@Html.IdFor(model=> model.Account1)"),
-            $NickName = $("#@Html.IdFor(model=> model.NickName)"),
-            $Password = $("#@Html.IdFor(model=> model.Password)"),
-            $passwordConfirm = $("#passwordConfirm");
-        if (!/^[a-z|A-z|_]\w{3,29}$/.test($Account1.val())) {
-            layer.msg("账号格式不符合");
-            $Account1.focus();
-            return false;
+    function doSubmit() { // 定义一个函数doSubmit，用于提交注册的数据，返回一个布尔值，表示是否允许提交
+        var $Account1 = $("#@Html.IdFor(model=> model.Account1)"), // 通过id选择器找到账号的输入框，赋值给变量$Account1
+            $NickName = $("#@Html.IdFor(model=> model.NickName)"), 
+            $Password = $("#@Html.IdFor(model=> model.Password)"), 
+            $passwordConfirm = $("#passwordConfirm"); // 通过id选择器找到确认密码的输入框，赋值给变量$passwordConfirm
+        if (!/^[a-z|A-z|_]\w{3,29}$/.test($Account1.val())) { // 如果账号的值不符合正则表达式的要求
+            layer.msg("账号格式不符合"); // 通过layer插件显示一个提示信息，内容为“账号格式不符合”
+            $Account1.focus(); // 使账号的输入框获得焦点
+            return false; 
         }
-        if ($NickName.val().isEmpty() || getStringLength($NickName.val()) < 2 || getStringLength($NickName.val()) > 16) {
-            layer.msg("昵称格式不符合");
+        if ($NickName.val().isEmpty() || getStringLength($NickName.val()) < 2 || getStringLength($NickName.val()) > 16) { // 如果昵称的值为空或长度不符合要求，就执行以下代码
+            layer.msg("昵称格式不符合"); // 通过layer插件显示一个提示信息，内容为“昵称格式不符合”
             $NickName.focus();
+            return false; 
+        }
+        if (!/^\w{6,20}$/.test($Password.val())) { // 如果密码的值不符合正则表达式的要求，就执行以下代码
+            layer.msg("密码格式不符合"); // 通过layer插件显示一个提示信息，内容为“密码格式不符合”
+            $Password.focus(); 
             return false;
         }
-        if (!/^\w{6,20}$/.test($Password.val())) {
-            layer.msg("密码格式不符合");
-            $Password.focus();
-            return false;
+        if ($Password.val() !== $passwordConfirm.val()) { // 如果密码的值和确认密码的值不一致，就执行以下代码
+            layer.msg("两次密码不一致"); // 通过layer插件显示一个提示信息，内容为“两次密码不一致”
+            $passwordConfirm.focus(); 
+            return false; 
         }
-        if ($Password.val() !== $passwordConfirm.val()) {
-            layer.msg("两次密码不一致");
-            $passwordConfirm.focus();
-            return false;
-        }
-        return true;
+        return true; // 如果以上条件都满足，就返回true，允许提交
     }
     // 英文占1个字符，中文汉字占2个字符
-    function getStringLength(s) {
-        var realLength = 0;
-        var len = s.length;
-        var charCode = -1;
-        for (var i = 0; i < len; i++) {
-            charCode = s.charCodeAt(i);
-            if (charCode >= 0 && charCode <= 128) {
-                realLength += 1;
-            } else {
+    function getStringLength(s) { // 定义一个函数getStringLength，用于计算字符串的长度，参数为字符串s，返回一个整数，表示字符串的长度
+        var realLength = 0; // realLength，用于存储字符串的长度，初始值为0
+        var len = s.length; // len，用于存储字符串的字符个数，赋值为s的length属性
+        var charCode = -1; // charCode，用于存储字符的编码，初始值为-1
+        for (var i = 0; i < len; i++) { 
+            charCode = s.charCodeAt(i); /
+            if (charCode >= 0 && charCode <= 128) { // 如果编码在0到128之间，表示是英文或其他符号，就执行以下代码
+                realLength += 1; // 将realLength的值加1
+            } else { // 否则，表示是中文或其他符号，就执行以下代码
                 // 如果是中文则长度加2 
-                realLength += 2;
+                realLength += 2; // 将realLength的值加2
             }
         }
-        return realLength;
+        return realLength; // 返回realLength的值，即字符串的长度
     }
 </script>
 
