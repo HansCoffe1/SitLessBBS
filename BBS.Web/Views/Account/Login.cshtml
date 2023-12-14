@@ -38,22 +38,21 @@
     </div>
 </div>
 <script>
-    function doSubmit() {
-        var $Account1 = $("#@Html.IdFor(model=> model.Account1)"),
-            $Password = $("#@Html.IdFor(model=> model.Password)");
+    function doSubmit() { //用于提交登录的数据，返回一个布尔值，表示是否允许提交
+        var $Account1 = $("#@Html.IdFor(model=> model.Account1)"), // 通过id选择器找到账号的输入框，赋值给变量$Account1
+            $Password = $("#@Html.IdFor(model=> model.Password)"); 
             //账号格式：4-30位 字母、数字、下划线，必须以字母或下划线开头
-        if (!/^[a-z|A-z|_]\w{3,29}$/.test($Account1.val())) {
-            layer.msg("账号格式不符合");
-            $Account1.focus();
-            return false;
+        if (!/^[a-z|A-z|_]\w{3,29}$/.test($Account1.val())) { // 如果账号的值不符合正则表达式的要求
+            layer.msg("账号格式不符合"); 
+            $Account1.focus(); // 使账号的输入框获得焦点
+            return false; 
         }
         //密码格式：6-20位 字母、数字、下划线 
-        if (!/^\w{6,20}$/.test($Password.val())) {
+        if (!/^\w{6,20}$/.test($Password.val())) { // 如果密码的值不符合正则表达式的要求
             layer.msg("密码格式不符合");
-            $Password.focus();
-            return false;
+            $Password.focus(); 
+            return false; 
         }
-        return true;
+        return true; // 如果以上条件都满足，就返回true，表示允许提交
     }
 </script>
-
